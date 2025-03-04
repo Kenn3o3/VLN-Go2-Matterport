@@ -2,7 +2,7 @@
 
 ## Overview
 
-This dataset is designed for **training and evaluating models on Vision Language Navigation task**. It is collected using unitree go2 navigating through indoor environments from the **Matterport dataset** (provided by VLN-CE-Isaac benchmark), rendered with **Isaac Lab**. Each episode in the dataset represents a navigation task where the robot follows an **expert path** using a **Proportional-Derivative (PD) controller**, capturing **visual observations** (RGB images and depth maps) and **discrete actions** at regular intervals (40 simulation steps). The dataset is intended to support research in areas such as imitation learning, reinforcement learning, and vision-language navigation.
+This dataset is designed for **training and evaluating models on Vision Language Navigation task**. It is collected using unitree go2 navigating through indoor environments from the **Matterport .usd dataset** (provided by VLN-CE-Isaac benchmark), rendered with **Isaac Lab**. Each episode in the dataset represents a navigation task where the robot follows an **expert path** using a **Proportional-Derivative (PD) controller**, capturing **visual observations** (RGB images and depth maps) and **discrete actions** at regular intervals (20 simulation steps). The dataset is intended to support research in areas such as imitation learning, reinforcement learning, and vision-language navigation.
 
 ---
 
@@ -30,46 +30,11 @@ Inside each episode directory, the following files and directories are present:
 - **`depths/`**  
   A directory containing **depth maps** corresponding to the RGB images. These are saved as NumPy arrays (e.g., `depth_0.npy`, `depth_1.npy`, etc.) for efficient loading and processing.
 
-### Data Collection Frequency
-Data (RGB images, depth maps, and actions) is collected every 20 (`k_steps`) simulation steps, where `k_steps` is defined by the `--action_repeat` argument (default is 20) in the `run_pd.py --train` code. This ensures that the dataset captures key decision points during the navigation task rather than every simulation step to reduce space.
+### Dataset Download (To be uploaded)
 
 ---
 
-## Data Collection Process
-
-The dataset is generated in **training mode** using the `--train` flag in the `run_pd.py` script. The process involves a simulated robot navigating through environments sourced from the **Matterport dataset**, which consists of scanned real-world indoor spaces (e.g., houses, apartments). The simulation is powered by **Omniverse Isaac Sim**, providing realistic visual and spatial data.
-
-### Episode Setup
-Each episode is configured based on metadata from the `vln_ce_isaac_v1.json.gz` file in the `VLN-CE-Isaac`, which includes:
-- **Start Position**: The initial position and orientation of the robot.
-- **Goal Position**: The target location the robot must reach.
-- **Instruction**: A natural language description of the task (e.g., "Navigate to the bedroom").
-- **Expert Path**: A sequence of ground-truth positions representing an optimal or near-optimal trajectory to the goal.
-
-### Navigation with PD Controller
-In training mode, actions are selected using a **Proportional-Derivative (PD) controller** that follows the expert path. The controller operates as follows:
-1. **Robot State**: The robot’s current position and orientation are obtained from the simulation.
-2. **Target Selection**: The controller identifies the closest point on the expert path and selects a look-ahead point (default `look_ahead = 2` steps ahead).
-3. **Yaw Calculation**: The desired yaw (rotation) is computed based on the relative position of the look-ahead point in the robot’s body frame.
-4. **Action Selection**:
-   - If the desired yaw rate exceeds a threshold (`w_threshold = 0.05 rad/s`), the robot selects:
-     - `"Turn left"` (angular velocity = 0.5 rad/s) if the yaw rate is positive.
-     - `"Turn right"` (angular velocity = -0.5 rad/s) if the yaw rate is negative.
-   - Otherwise, the robot selects `"Move forward"` (linear velocity = 0.6 m/s).
-5. **Execution**: The selected action is executed for `k_steps` simulation steps before collecting data and selecting the next action.
-
-### Episode Termination
-An episode ends when one of the following conditions is met:
-- **Success**: The robot reaches within 1 meter of the goal position.
-- **Failure**: The maximum number of steps (default `max_steps = 4000`) is reached.
-- **Other Termination**: The environment signals completion for other reasons (e.g., collision or timeout).
-
-### Data Logging
-At each data collection step (every `k_steps`):
-- The **RGB image** is captured from the robot’s camera.
-- The **depth map** is recorded to provide spatial information.
-- The **action** chosen by the PD controller is logged.
-- The instruction remains constant and is saved once per episode.
+## Data Collection Pipeline (To be updated)
 
 ---
 
@@ -100,8 +65,8 @@ This dataset is a valuable resource for various research and development tasks, 
   The environments are USD files from the Matterport dataset, representing real-world indoor spaces with detailed geometry and textures, providing a challenging and realistic setting for navigation.
 
 - **Preprocessing**  
-  - **RGB Images**: Saved in their original resolution as PNG files. For visualization in the web UI, they are resized to 256x256 pixels, but the dataset retains the full-resolution images.
-  - **Depth Maps**: Saved as NumPy arrays for compatibility with machine learning frameworks like PyTorch or TensorFlow.
+  - **RGB Images**: Saved in their original resolution as PNG files.
+  - **Depth Maps**: Saved as NumPy arrays.
 
 - **Action Space**  
   We discretized the actions available to the robot as:
