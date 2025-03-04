@@ -1,0 +1,8 @@
+# instructions.txt
+# debugging_tools
+# MCoT_planner
+logs/experiments
+# other_methods/VLMNavAgent_planner
+training_data
+training_data_small
+training_data.zip
