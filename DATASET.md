@@ -30,10 +30,6 @@ Inside each episode directory, the following files and directories are present:
 - **`depths/`**  
   A directory containing **depth maps** corresponding to the RGB images. These are saved as NumPy arrays (e.g., `depth_0.npy`, `depth_1.npy`, etc.) for efficient loading and processing.
 
-## Dataset Download (To be uploaded)
-
----
-
 ## Data Collection Pipeline (To be updated)
 
 ---
