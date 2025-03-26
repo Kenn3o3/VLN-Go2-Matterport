@@ -30,6 +30,13 @@ Inside each episode directory, the following files and directories are present:
 - **`depths/`**  
   A directory containing **depth maps** corresponding to the RGB images. These are saved as NumPy arrays (e.g., `depth_0.npy`, `depth_1.npy`, etc.) for efficient loading and processing.
 
+Statistics:
+
+- Min Depth: 0.04 meters
+- Max Depth: 39.36 meters
+- Mean Depth: 2.02 meters
+- Std Depth: 1.68 meters
+
 ## Data Collection Pipeline (To be updated)
 
 ---

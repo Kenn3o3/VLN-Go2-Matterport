@@ -2,6 +2,8 @@
 
 Please refer to [DATASET.md](DATASET.md) for the details of this dataset.
 
+
+
 ## Dataset Download 
 
 Dataset can be downloaded from https://1drv.ms/u/c/7c29b3d8450f09f4/EXYjBta3ANVCpKyTY6gwl5gBrRVlxTkqo64CX_-fQZBPxw?e=HCZBlI
@@ -9,3 +11,8 @@ Dataset can be downloaded from https://1drv.ms/u/c/7c29b3d8450f09f4/EXYjBta3ANVC
 ## Dataset visualization
 
 data_visualize.ipynb provides a notebook to visualize an episode collected.
+
+```
+The documentations are polished by ChatGPT.
+Moreover, ChatGPT has been used in debugging and implementing some low-level algorithms such as those involving file operations.
+```
