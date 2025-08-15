@@ -3,8 +3,6 @@ import os
 import time
 
 # Set environment variables
-os.environ['DASHSCOPE_API_KEY'] = 'sk-4257a5ed4a2a4bb090dd68df4d10639c'
-os.environ['OPENAI_API_KEY'] = 'sk-4257a5ed4a2a4bb090dd68df4d10639c'
 
 # Change to the working directory
 os.chdir(os.path.expanduser('~/MCoT-VLN'))
