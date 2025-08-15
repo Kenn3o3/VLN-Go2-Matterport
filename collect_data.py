@@ -2,10 +2,12 @@ import pexpect
 import os
 import time
 
-# Set environment variables
+# # Set environment variables
+# os.environ['DASHSCOPE_API_KEY'] = 'sk-4257a5ed4a2a4bb090dd68df4d10639c'
+# os.environ['OPENAI_API_KEY'] = 'sk-4257a5ed4a2a4bb090dd68df4d10639c'
 
-# Change to the working directory
-os.chdir(os.path.expanduser('~/MCoT-VLN'))
+# # Change to the working directory
+# os.chdir(os.path.expanduser('~/MCoT-VLN'))
 
 # Define constants
 max_attempts = 3        # Maximum retries per episode
@@ -24,7 +26,7 @@ for index in range(642, 1078):  # 1078 because range is exclusive
         
         # Construct the command
         command = (
-            f"python CLIP-LSTM-Policy/run_pd.py --task=go2_matterport_vision "
+            f"python run_pd.py --task=go2_matterport_vision "
             f"--history_length=9 --load_run=2024-09-25_23-22-02 --train "
             f"--episode_index {index}"
         )
